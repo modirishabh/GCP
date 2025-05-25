@@ -1,30 +1,29 @@
-# Shared VPC in Google Cloud Platform (GCP)
+# VPN Connections in Google Cloud Platform (GCP)
 
-Welcome back, Gurus. This lesson delves into Shared VPC, a powerful feature in GCP that allows for cross-project resource sharing and streamlined network management.
+Welcome back, Gurus. This lesson focuses on VPN connections within GCP, a fundamental concept for securely extending your on-premises network to the cloud.
 
-## Introduction to Shared VPC
+## Understanding VPN
 
-Shared VPC enables projects within an organization to connect and utilize shared network resources, fostering collaboration while maintaining centralized control.
+A Virtual Private Network (VPN) enables a secure and encrypted connection over the internet, allowing for safe data transmission and privacy protection.
 
-## Key Aspects of Shared VPC
+## How Does VPN Work?
 
-- **Host and Service Projects**: Define the structure of Shared VPC, with the host project containing the VPC and the service projects utilizing its resources.
-- **Subnet Sharing**: Allows specific subnets within the VPC to be shared with service projects.
-- **Access Control**: Through IAM roles, users are granted permission to deploy resources within the shared subnets.
+VPN connections are facilitated by gateways that establish a secure tunnel through which data can pass safely:
 
-## Hands-On Demo: Using Shared VPC
+- **Peer VPN Gateway**: Your on-premises or other cloud network's VPN gateway.
+- **Cloud VPN Gateway**: GCP's VPN gateway that connects to your peer gateway.
 
-The practical demonstration included:
+## Types of VPNs in Google Cloud
 
-1. Establishing a Shared VPC in a host project.
-2. Sharing a dev subnet with a service project for development purposes.
-3. Assigning the `compute.networkUser` role to a user, enabling them to create VM instances in the shared subnet.
-4. Launching an instance in the shared subnet as a user with the appropriate permissions.
+GCP offers two types of VPN connections:
 
-## Key Takeaways for the Exam
+- **High Availability VPN (HA VPN)**: Ensures higher uptime with redundant interfaces and IP addresses, meeting a strong service level agreement.
+- **Classic VPN**: A basic VPN setup with a single tunnel and IP address, suitable for less critical connections.
 
-- Understand the architecture of Shared VPC, including host and service projects.
-- Learn how to share network resources across projects securely.
-- Recognize the importance of IAM roles in managing access to shared subnets.
+## Key Takeaways for the GCP Cloud Associate Exam
 
-Thank you for exploring Shared VPC with me. Be sure to review this lesson and practice in your own account to solidify your understanding of how Shared VPC works. See you in the next video!
+- VPNs provide a secure method to connect on-premises networks to GCP VPCs.
+- Differentiate between HA VPN and Classic VPN, understanding the benefits and use cases of each.
+- Each VPN setup requires a cloud VPN gateway and a customer gateway to establish the tunnel.
+
+Thank you for participating in this VPN lesson. As we proceed with our exam preparation, we'll explore more networking services and configurations. I'll see you in the next video!
