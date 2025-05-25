@@ -12,6 +12,10 @@ Google Cloud offers robust monitoring tools, including:
 ## Cloud Logging
 
 Cloud Logging captures detailed logs of your environment, enabling:
+Cloud Logging
+Infrastructure Logs: Maintain logs that capture the history and events within your infrastructure.
+Data Analysis: Use Cloud Logging to analyze important data and understand your infrastructure's behavior.
+Log Sinks: Create sinks to export logs to other GCP services like Cloud Storage or BigQuery for further analysis.
 
 - **Event and History Logging**: Record the significant events and operational history of your infrastructure.
 - **Analysis**: Analyze log data to gain insights into how your infrastructure is performing.
