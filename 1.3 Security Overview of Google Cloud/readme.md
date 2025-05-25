@@ -3,13 +3,17 @@ Understanding Google Cloud Security
 Google Cloud's security is built on two main pillars: trusted cloud infrastructure and encryption at rest.
 
 Trusted Cloud Infrastructure:
+
 Google Cloud's infrastructure is designed to be secure by default, implementing security through various layers, including operational and device security.
 Internet communications are encrypted in transit to ensure data is secure as it travels over the internet.
 Identity security involves authenticating users and services, as well as protecting sensitive data with security keys.
 Storage security means that any data uploaded to Google Cloud is automatically encrypted at rest, preventing unauthorized access.
 Service deployment involves cryptographic methods for authentication and authorization to secure communication between services.
 The hardware infrastructure, especially for on-premises services, is controlled, secured, and hardened by Google.
+
+
 Encryption at Rest:
+
 Google Cloud encrypts each chunk of uploaded data with a unique key using the 256-bit advanced encryption standard (AES), turning it into ciphertext.
 This encryption ensures that even if data were to be accessed by unauthorized parties, it would be unusable without the corresponding decryption key.
 Encrypted data chunks are distributed across Google's storage infrastructure for enhanced security.
