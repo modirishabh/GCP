@@ -22,10 +22,74 @@ GKE supports a variety of application types, each suited for different use cases
 - **Batch Jobs**: Suitable for processing tasks that run to completion without ongoing user interaction.
 - **Daemon Jobs**: Used for running background tasks across all or some nodes within a cluster.
 
-## Key Takeaways for the GCP Cloud Associate Exam
+# Google Cloud Platform (GCP) - GKE Cluster Configuration
 
-- GKE leverages Kubernetes to provide a scalable and fully-managed environment for containerized apps.
-- Familiarize yourself with the Kubernetes control plane, nodes, and pod structure.
-- Understand different workload types and their respective characteristics within a GKE cluster.
+## Overview
 
-Thank you for exploring GKE with me. Stay tuned as we continue our GCP journey and prepare for deploying our first GKE cluster in the next lesson. I'll see you in the next video!
+This project outlines the use of **Google Kubernetes Engine (GKE)** on **Google Cloud Platform (GCP)** with a focus on:
+
+- Choosing between **Autopilot** and **Standard** clusters
+- Registering clusters into a **Fleet** for unified management
+- Configuring a **cost-optimized cluster**
+
+---
+
+## GKE Cluster Types
+
+### 🧭 Autopilot Clusters
+
+Autopilot clusters are recommended for most production workloads. These clusters:
+
+- Are pre-configured with Kubernetes best practices
+- Optimize for **security**, **scalability**, and **cost**
+- Reduce operational overhead
+
+Use Autopilot when:
+- You want to reduce manual configuration
+- Your workloads fit into common production patterns
+
+### ⚙️ Standard Clusters
+
+Standard clusters give you more control over configuration:
+
+- You manage node configuration and upgrades
+- Google manages the control plane
+- Useful when Autopilot restrictions don't suit your workload
+
+Use Standard when:
+- You require custom security or network configurations
+- You need advanced workload tuning
+
+---
+
+## 🚀 Fleet Registration (Multi-cluster Management)
+
+> **New Feature**
+
+A **Fleet** allows you to group Kubernetes clusters for unified management and policy enforcement.
+
+**Benefits:**
+- Logical grouping of clusters
+- Enables **multi-cluster** capabilities
+- Simplifies application of consistent policies and configurations
+
+To register a cluster to a Fleet:
+- Use `gcloud container hub memberships register`
+- Or use the GCP Console under **GKE > Fleet > Register Cluster**
+
+---
+
+## 💰 Cost-Optimized Cluster Settings
+
+Below is an example of a cost-efficient GKE cluster setup:
+
+```yaml
+Cluster name:                cost-optimized-cluster-1
+Cluster zone:                us-central1-c
+Cluster size:                user-selected
+Machine type:                auto-selected (based on desired cluster size)
+Cluster autoscaling:         Enabled
+Autoscaling profile:         Optimize utilization
+Vertical pod autoscaling:    Enabled
+Node auto-provisioning:      Enabled
+GKE cost allocation:         Enabled
