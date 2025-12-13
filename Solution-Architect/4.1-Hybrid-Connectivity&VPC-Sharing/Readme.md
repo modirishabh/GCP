@@ -14,6 +14,24 @@ Google Cloud offers **Classic VPN** (99.9% SLA, single interface, static routing
 
 **HA VPN** auto-provisions two external IPs from unique pools, requires 2-4 tunnels for SLA, supports active/active or active/passive routing via Cloud Router BGP (link-local 169.254.x.x addresses).[web:1]
 
+
+
+## What is BGP?
+## BGP is a routing protocol that lets different networks tell each other which IP ranges they can reach and which path is best to get there. In HA VPN, BGP is used between your on‑premises router and Cloud Router so routes can be exchanged and updated automatically instead of being configured manually 
+BGP stands for **Border Gateway Protocol**, the main routing protocol used on the internet to exchange “reachability” information between networks (autonomous systems).​
+
+Each BGP router advertises which IP prefixes it can reach and receives advertisements from its peers, then chooses the best path based on policies and attributes (like path length, preference, etc.).​
+
+In simple terms: BGP is like a dynamic map between networks that constantly updates which roads exist and which road is currently best.
+
+**Why HA VPN requires BGP**
+HA VPN tunnels must use dynamic routing, and on Google Cloud that means using Cloud Router with BGP to exchange routes with your on‑premises VPN device.​
+
+BGP allows the VPN endpoints to automatically learn new subnets on either side (for example, when you add a new VPC subnet or a new on‑premises LAN) without changing tunnel configuration.​
+
+This dynamic behavior is critical for high availability: if one tunnel or path fails, BGP detects the change and shifts traffic to the remaining healthy tunnel(s).
+
+
 **How BGP works in HA VPN (with example)**
 Imagine you have:
 
