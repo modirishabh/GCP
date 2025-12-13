@@ -14,6 +14,42 @@ Google Cloud offers **Classic VPN** (99.9% SLA, single interface, static routing
 
 **HA VPN** auto-provisions two external IPs from unique pools, requires 2-4 tunnels for SLA, supports active/active or active/passive routing via Cloud Router BGP (link-local 169.254.x.x addresses).[web:1]
 
+**How BGP works in HA VPN (with example)**
+Imagine you have:
+
+On‑prem network: 10.0.0.0/16 behind your data center router
+
+GCP VPC network: 10.10.0.0/16 with an HA VPN gateway and a Cloud Router
+
+**In HA VPN:**
+
+You create 2 or 4 tunnels between your HA VPN gateway and your on‑premises VPN router (for example, tunnel A and tunnel B).
+
+Cloud Router runs BGP sessions over these tunnels to your on‑prem router (using link‑local IPs like 169.254.x.x).​
+
+Cloud Router advertises 10.10.0.0/16 to on‑prem; your router advertises 10.0.0.0/16 to Cloud Router.
+
+Both sides now have dynamic routes:
+
+GCP knows “to reach 10.0.0.0/16, send traffic through HA VPN tunnels”.
+
+On‑prem knows “to reach 10.10.0.0/16, send traffic through HA VPN tunnels”.
+
+If tunnel A fails (for example, link issue or router problem), BGP notices that session is down and stops advertising routes via that tunnel, so traffic is automatically shifted to tunnel B without you changing routes manually.​
+
+**Benefits of BGP in HA VPN**
+Automatic route updates: New subnets on either side are learned and advertised via BGP; no manual route updates needed.
+
+High availability and failover: Multiple tunnels can be active; BGP withdraws routes on failed paths and keeps healthy ones, supporting 99.99% SLA for HA VPN when configured correctly.​
+
+Load sharing: By tuning BGP route priorities/weights, HA VPN can be configured as active/active (load share across tunnels) or active/passive (one tunnel used, the other standby).​
+
+So, BGP in HA VPN is what makes the connection dynamic, resilient, and scalable, instead of a fragile VPN with static, hard‑coded routes.
+
+
+
+
+
 ## Interconnect Options
 
 |Type|Connection|Capacity|SLA|Layer|Use Case|
