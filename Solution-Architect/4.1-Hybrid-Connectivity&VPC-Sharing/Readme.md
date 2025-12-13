@@ -1,4 +1,10 @@
 # GCP Hybrid Connectivity & VPC Sharing
+## What is Cloud VPN?
+
+**Cloud VPN** creates encrypted IPsec tunnels over public internet to connect on-premises networks to Google Cloud VPC. Provides secure private IP access (RFC1918) between environments.[web:1]
+
+**Use Case**: Low-medium bandwidth hybrid connectivity, encrypted data transfer, temporary/migration scenarios, no direct physical connection available.
+
 
 ## Cloud VPN Types
 
