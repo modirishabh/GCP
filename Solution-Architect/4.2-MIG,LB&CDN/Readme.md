@@ -15,6 +15,21 @@ Managed instance groups manage identical VM instances as a single entity using i
 2. Define MIG: name, zone(s), template, autoscaling policy, health check
 3. Manager auto-populates instances
 
+# OSI Model Layers - Quick Reference Table
+
+## OSI 7 Layers Summary
+
+| Layer | Name | Job | Real Example | Protocols/Devices |
+|-------|------|-----|--------------|-------------------|
+| **7** | **Application** | User apps talk to network | Web browser, email client | **HTTP, HTTPS, FTP, SMTP** |
+| **6** | **Presentation** | Translate/encrypt data | JPEG → bytes, SSL encryption | **SSL/TLS, JPEG, ASCII** |
+| **5** | **Session** | Manage connections | Login session, video call | **APIs, RPC, NetBIOS** |
+| **4** | **Transport** | End-to-end delivery | TCP (reliable), UDP (fast) | **TCP, UDP** |
+| **3** | **Network** | Route across networks | IP addresses, router paths | **IP, ICMP, Routers** |
+| **2** | **Data Link** | Local network delivery | MAC addresses, frame check | **Ethernet, Switches, WiFi** |
+| **1** | **Physical** | Bits over wire | Cable signals, light pulses | **Cables, Hubs, Fiber** |
+
+
 ## Application Load Balancer (Layer 7)
 External Application Load Balancers distribute HTTP(S) traffic globally using Google Front Ends (GFEs) or Envoy proxies to backends like Compute Engine, GKE, Cloud Storage, Cloud Run.[web:21] Uses single anycast IP with URL maps for content-based routing (e.g., /video → video backend). Backend services include health checks, session affinity, timeouts; supports cross-region failover.[web:21]
 
