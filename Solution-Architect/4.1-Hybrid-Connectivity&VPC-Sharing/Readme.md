@@ -77,38 +77,54 @@ So, BGP in HA VPN is what makes the connection dynamic, resilient, and scalable,
 |Cross-Cloud|Google ↔ AWS/Azure/OCI/Alibaba|10/100Gbps|N/A|Multi-cloud integration[web:21]|
 
 All Interconnects provide RFC1918 private IP access (no public internet traversal).[web:21]
+# Peering Services
 
-## Peering Services
+### Direct Peering
+- Connects your network directly with Google at **Google Edge Points of Presence (PoPs)**.
+- Supports **10 Gbps+ bandwidth**, uses **public IPs** to reach Google services.
+- **No SLA**, typically used for large, direct access to Google services.
 
-**Direct Peering**: 10Gbps+ settlement-free BGP peering at Google Edge PoPs (no SLA, public IP access to Google services).[web:7]
+### Carrier Peering
+- Used when Direct Peering is not available.
+- Connectivity through **Google-approved carriers**.
+- Also **no SLA**, provides **public IP access** to Google services.
 
-**Carrier Peering**: Via supported carriers when Direct Peering requirements unmet (no SLA).[web:12]
+### Interconnect vs Peering
+- **Interconnect**: Private network connectivity → uses **RFC1918 (private IPs)**, includes **SLA**.
+- **Peering**: Public network access to Google APIs/services → uses **public IPs**, **no SLA**.
 
-**Interconnect vs Peering**: Interconnect = private RFC1918 VPC access + SLA; Peering = public Google services access, no SLA.[web:21]
+---
 
-## Decision Flow
+# Decision Flow (Choosing the Right Option)
 
-Need Google APIs/Workspace? → Peering (Direct/Carrier)
-↓ No
-Connect to other cloud? → Cross-Cloud Interconnect
-↓ No
-High bandwidth + colocation? → Dedicated Interconnect
-↓ No
-Encrypted/low bandwidth? → Cloud VPN
-Else → Partner Interconnect
+1. **Need Google APIs/Workspace (public services)?** → Use **Direct or Carrier Peering**.  
+2. **Need to connect to another cloud provider?** → Use **Cross-Cloud Interconnect**.  
+3. **Need high bandwidth and colocated setup?** → Choose **Dedicated Interconnect**.  
+4. **Need secure/encrypted or lower bandwidth connection?** → Use **Cloud VPN**.  
+5. **If using Partner facility for connectivity?** → Choose **Partner Interconnect**.
 
+**VPN over Interconnect:** Adds **IPsec encryption** layer on top of Interconnect for secure data transfer.
 
-**VPN over Interconnect**: Adds IPsec encryption to Interconnect traffic.[web:20]
+---
 
-## VPC Sharing Comparison
+# VPC Sharing vs VPC Peering
 
-|Feature|Shared VPC|VPC Network Peering|
-|-------|-----------|------------------|
-|Scope|Same organization, host/service projects|Same/different projects/organizations[web:8]|
-|Admin Model|Centralized (host project controls network/firewalls)|Decentralized (each VPC independent)[web:8]|
-|Transitivity|Yes (via host VPC)|No (direct peers only)[web:8]|
-|Use Case|Central IT team manages multi-project networking|Peer-to-peer project isolation[web:8]|
+| Feature | Shared VPC | VPC Network Peering |
+|----------|-------------|--------------------|
+| **Scope** | Within same organization (host & service projects). | Between same or different organizations/projects. |
+| **Admin Model** | Centralized: Host project controls routes & firewalls. | Decentralized: Each VPC manages its own network. |
+| **Transitivity** | Yes, via host VPC. | No, only direct peer-to-peer. |
+| **Use Case** | Central IT managing multiple projects under one network. | Individual projects needing isolated connection. |
 
-**Shared VPC**: Host project shares subnets; service projects use host's IPs/routes/firewalls.[web:8]
+### Shared VPC
+- A **host project** shares its **subnets** with **service projects**.  
+- Service projects use **host’s IPs, routes, and firewalls**.  
+- Ideal for centralized management and security.
 
-**VPC Peering**: Private RFC1918 connectivity, requires non-overlapping CIDRs, mutual peering configuration.[web:13]
+### VPC Peering
+- Connects **two VPC networks** privately using **RFC1918 IPs**.
+- Requires **non-overlapping IP ranges** and **mutual configuration**.
+- Great for **peer-to-peer** communication between separate networks.
+
+---
+
