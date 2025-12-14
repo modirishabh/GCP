@@ -111,12 +111,19 @@ All Interconnects provide RFC1918 private IP access (no public internet traversa
 
 | Feature | Shared VPC | VPC Network Peering |
 |----------|-------------|--------------------|
-| **Scope** | Within same organization (host & service projects). | Between same or different organizations/projects. |
+| **Scope Across Org** | No | Yes |
+| **With In Project** | No | Yes |
 | **Admin Model** | Centralized: Host project controls routes & firewalls. | Decentralized: Each VPC manages its own network. |
 | **Transitivity** | Yes, via host VPC. | No, only direct peer-to-peer. |
 | **Use Case** | Central IT managing multiple projects under one network. | Individual projects needing isolated connection. |
 
 ### Shared VPC
+
+**Shared VPC** allows an organization to connect resources from **multiple projects** to a **common Virtual Private Cloud (VPC) network**
+so that they can communicate with each other securely and efficiently by using internal IP addresses from that network.
+
+When you use Shared VPC, you designate a project as a **host project** and attach **one or more other service projects** to it.
+
 - A **host project** shares its **subnets** with **service projects**.  
 - Service projects use **host’s IPs, routes, and firewalls**.  
 - Ideal for centralized management and security.
