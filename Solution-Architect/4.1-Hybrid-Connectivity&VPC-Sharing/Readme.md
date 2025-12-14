@@ -11,10 +11,15 @@
 Google Cloud offers **Classic VPN** (99.9% SLA, single interface, static routing) and **HA VPN** (99.99% SLA, dual interfaces, dynamic BGP routing only).[web:1][web:20]
 
 **Classic VPN** Single VPN gateway with 1 external IP for basic encrypted tunnels over internet. 
+
 🏢 ON-PREM Router (203.0.113.10)
+
      ↓ IKEv1/IKEv2 + IPsec Tunnel
+     
 ☁️ GCP Classic VPN Gateway (35.192.XX.XX) ← Single IP
+
      ↓ Static Routes (manual)
+     
 VPC: 10.1.0.0/16
  
  Supports IKEv1/IKEv2, site-to-site tunnels over public internet (MTU ≤1460 bytes), suitable for low-volume encrypted connections.[web:1]
