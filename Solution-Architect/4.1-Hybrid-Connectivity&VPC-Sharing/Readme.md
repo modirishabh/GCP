@@ -27,15 +27,19 @@ VPC: 10.1.0.0/16
 **HA VPN**  Dual VPN gateway with 2 external IPs (auto-provisioned from different pools) + BGP dynamic routing.
 
 🏢 ON-PREM Router
+    
      ↓ Tunnel 1 (Interface 1)
 
 ☁️ HA VPN Gateway Interface 1 (35.192.XX.1)
+     
      ↓ BGP (169.254.x.x)
 
 Cloud Router ← Learns 10.0.0.0/16 automatically
+    
      ↓ Tunnel 2 (Interface 2) ← Active/Active or Active/Passive
 
 ☁️ HA VPN Gateway Interface 2 (35.192.XX.2)
+    
      ↓ Tunnel 3/4 (optional)
 
 auto-provisions two external IPs from unique pools, requires 2-4 tunnels for SLA, supports active/active or active/passive routing via Cloud Router BGP (link-local 169.254.x.x addresses).[web:1]
