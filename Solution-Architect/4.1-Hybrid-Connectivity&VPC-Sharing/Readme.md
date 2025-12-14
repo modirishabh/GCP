@@ -25,12 +25,16 @@ VPC: 10.1.0.0/16
  Supports IKEv1/IKEv2, site-to-site tunnels over public internet (MTU ≤1460 bytes), suitable for low-volume encrypted connections.[web:1]
 
 **HA VPN**  Dual VPN gateway with 2 external IPs (auto-provisioned from different pools) + BGP dynamic routing.
+
 🏢 ON-PREM Router
      ↓ Tunnel 1 (Interface 1)
+
 ☁️ HA VPN Gateway Interface 1 (35.192.XX.1)
      ↓ BGP (169.254.x.x)
+
 Cloud Router ← Learns 10.0.0.0/16 automatically
      ↓ Tunnel 2 (Interface 2) ← Active/Active or Active/Passive
+
 ☁️ HA VPN Gateway Interface 2 (35.192.XX.2)
      ↓ Tunnel 3/4 (optional)
 
