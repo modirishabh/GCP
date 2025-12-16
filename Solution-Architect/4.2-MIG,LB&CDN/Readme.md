@@ -59,13 +59,37 @@ Google Cloud then regularly sends requests to the configured IP:port and:
 - Defines how many **failed health checks in a row** are required to mark an instance as **unhealthy**.
 - Example: Unhealthy threshold = **2** → need **2 failed** checks in a row.
 
+# Stateful IP Addresses in Managed Instance Groups (MIGs)
 
+## 🎯 Problem It Solves
+**Normal MIG**: VM restarts → **New random IPs** → Apps break (DB connections, configs fail)
 
+**Stateful IP**: VM restarts → **Same IPs preserved** → Apps continue seamlessly
 
-**Creation Steps:**
-1. Create instance template (VM config snapshot)
-2. Define MIG: name, zone(s), template, autoscaling policy, health check
-3. Manager auto-populates instances
+## 🔄 Real-World Example
+
+**Before Stateful IP (Problem):**
+**MIG: web-server-mig (3 VMs)**
+**VM1: 10.128.1.10 ← Running your app**
+    **↓ Autoheal triggers** 
+**VM1 recreated: 10.128.1.25 ← NEW IP! App breaks!**
+
+**After Stateful IP (Fixed):**
+**VM1: 10.128.1.10 ← Running your app**
+     **↓ Autoheal triggers**
+**VM1 recreated: 10.128.1.10 ← SAME IP! App continues working!**
+
+## How It Works (Step-by-Step)
+1. **Enable Stateful Policy** on existing MIG
+   gcloud compute instance-groups managed update web-server-mig \
+     --stateful-network-interface=network-tier=PREMIUM,disable-external=true
+
+2. **Magic happens automatically**:
+   - All existing VMs' ephemeral IPs → Promoted to **static/reserved IPs**
+   - New VMs get the **exact same IPs** as their predecessors
+
+3. **VM restarts** → Gets back **same IP + same disks** (if configured)
+
 
 # OSI Model Layers - Quick Reference Table
 
