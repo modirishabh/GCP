@@ -96,6 +96,51 @@ Google Cloud's Application Load Balancer:
   - Global request routing  
 
 ---
+# Google Cloud Application Load Balancer (HTTPS)
+
+Application Load Balancers (ALBs) in Google Cloud handle HTTP and HTTPS traffic with key differences for secure connections.[web:15]
+
+## HTTPS Configuration
+
+HTTPS ALBs use a **target HTTPS proxy** instead of an HTTP proxy, requiring at least one signed SSL certificate on the proxy. Client SSL sessions terminate at the load balancer itself, offloading decryption from backends. Up to 15 SSL certificates can be configured per proxy, each created as an SSL certificate resource specifically for load balancing proxies.[web:15]
+
+## QUIC Support
+
+ALBs support **QUIC**, a transport protocol that:
+- Speeds up client connection initiation
+- Reduces head-of-line blocking in multiplexed streams
+- Enables connection migration during IP address changes[web:15]
+
+## Backend Options
+
+### Backend Buckets
+Integrate **Cloud Storage** for static content delivery via URL maps:
+- Dynamic requests → Backend services
+- Static paths (e.g., `/love-to-fetch/`) → Specific regional buckets (e.g., `europe-north`, `us-east`)[web:15]
+
+### Network Endpoint Groups (NEGs)
+Group endpoints for granular traffic distribution:
+- **Containers** and VM services
+- Works with load balancers and Traffic Director[web:15]
+
+## NEG Types
+
+| Type | Description | Endpoints |
+|------|-------------|-----------|
+| **Zonal NEG** | Compute Engine VMs/services in a zone | IP or IP:port |
+| **Internet NEG** | External Google Cloud endpoints | FQDN:port or IP:port |
+| **Hybrid NEG** | External Traffic Director services | Service references |
+| **Serverless NEG** | Cloud Run, App Engine, Cloud Functions | No direct endpoints (regional services) |[web:15]
+
+## Key Differences: HTTP vs HTTPS ALB
+
+| Feature | HTTP ALB | HTTPS ALB |
+|---------|----------|-----------|
+| **Target Proxy** | Target HTTP Proxy | **Target HTTPS Proxy** |
+| **SSL Certificates** | Not required | **Required (1-15 certificates)** |
+| **SSL Termination** | N/A | **At Load Balancer** |
+| **QUIC Support** | Supported | **Supported** |
+| **Backend Types** | Services, Buckets, NEGs | **Services, Buckets, NEGs** |[web:15]
 
 ## References
 - [Google Cloud Load Balancing Overview](https://cloud.google.com/load-balancing/docs/)
