@@ -1,7 +1,8 @@
 # GCP Load Balancing & MIGs - Practitioner Notes
 
 ## Managed Instance Groups (MIGs)
-Managed instance groups manage identical VM instances as a single entity using instance templates. Regional MIGs spread instances across multiple zones for higher availability and zonal failure protection.[web:1][web:20] MIGs provide autoscaling based on CPU utilization, load balancing capacity, or monitoring metrics, and autohealing recreates unhealthy instances using health checks.[web:1]
+Managed instance groups manage identical VM instances as a single entity using instance templates. MIGs provide autoscaling based on CPU utilization, load balancing capacity, or monitoring metrics, and queue-based workload like Pub/Sub or schedule such as start-time, duration and recurrence.
+Autohealing recreates unhealthy instances using health checks. If an instance in the group stops, crashes or is deleted by an action other than the instance group commands, the managed instance group automatically recreates the instance so it can resume its processing tasks.[web:1]
 
 **Key MIG Features:**
 - Rolling updates via new templates
