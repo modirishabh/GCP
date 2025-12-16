@@ -11,6 +11,57 @@ Autohealing recreates unhealthy instances using health checks. If an instance in
 - Stateful IP preservation for databases/legacy apps
 - Supports stateless (web/batch) and stateful workloads
 
+
+
+# Google Cloud Health Checks (Simple Explanation)
+
+## What is a Health Check?
+
+Health checks are small automatic tests that Google Cloud runs to see if your VM or backend is alive and working.
+
+- If the backend is **healthy**, Google Cloud **sends traffic** to it.
+- If the backend is **unhealthy**, Google Cloud **stops sending traffic** to it.
+
+These checks are used internally by load balancers and managed instance groups to decide which instances should receive requests.
+
+## How a Health Check Works
+
+You configure how Google Cloud should test your backend:
+
+- **Protocol**: HTTP, HTTPS, TCP, etc.
+- **Port**: For example `80`, `443`, `8080`.
+- **Path (for HTTP/HTTPS)**: For example `/healthz`.
+
+Google Cloud then regularly sends requests to the configured IP:port and:
+
+- Marks the instance **Healthy** → traffic is allowed.
+- Marks the instance **Unhealthy** → traffic is stopped.
+
+## Key Terms
+
+### Check Interval
+
+- Defines **how often** the health check runs.
+- Example: Every **5 seconds**, send a health check request.
+
+### Timeout
+
+- Defines **how long to wait** for a response before considering that attempt as failed.
+- Example: Wait up to **5 seconds**; if no response → this attempt = **failed**.
+
+### Healthy Threshold
+
+- Defines how many **successful health checks in a row** are required to mark an instance as **healthy**.
+- Example: Healthy threshold = **2** → need **2 successful** checks in a row.
+
+### Unhealthy Threshold
+
+- Defines how many **failed health checks in a row** are required to mark an instance as **unhealthy**.
+- Example: Unhealthy threshold = **2** → need **2 failed** checks in a row.
+
+
+
+
 **Creation Steps:**
 1. Create instance template (VM config snapshot)
 2. Define MIG: name, zone(s), template, autoscaling policy, health check
