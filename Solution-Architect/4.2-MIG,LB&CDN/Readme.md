@@ -69,15 +69,23 @@ Google Cloud then regularly sends requests to the configured IP:port and:
 ## 🔄 Real-World Example
 
 **Before Stateful IP (Problem):**
+
 **MIG: web-server-mig (3 VMs)**
+
 **VM1: 10.128.1.10 ← Running your app**
+
     **↓ Autoheal triggers** 
+    
 **VM1 recreated: 10.128.1.25 ← NEW IP! App breaks!**
 
 **After Stateful IP (Fixed):**
+
 **VM1: 10.128.1.10 ← Running your app**
+
      **↓ Autoheal triggers**
+     
 **VM1 recreated: 10.128.1.10 ← SAME IP! App continues working!**
+
 
 ## How It Works (Step-by-Step)
 1. **Enable Stateful Policy** on existing MIG
