@@ -1,3 +1,16 @@
+# Kubernetes Default Namespaces Reference
+
+Kubernetes automatically creates four default namespaces in every cluster. These provide essential system functions and a default space for user workloads.
+
+## Namespace Summary
+
+| Namespace       | Purpose                                              | Typical Contents                                   | Usage Notes                                      |
+|-----------------|------------------------------------------------------|----------------------------------------------------|--------------------------------------------------|
+| **default**     | Default namespace for user workloads when no namespace is specified | User deployments, services, pods                   | Always exists; use `-n default` explicitly if needed |
+| **kube-node-lease** | Manages node heartbeats via lease objects            | Lease resources for node health checks             | Internal; updated every 10s by kubelet           |
+| **kube-public** | Resources visible/readable by all users cluster-wide | ConfigMaps like cluster-info                       | Public read access; no auth required             |
+| **kube-system** | Kubernetes system components                         | CoreDNS, kube-proxy, metrics-server, controller-manager | System-only; avoid modifying                     |
+
 
 - **Cordon the existing node pool**: This operation marks the nodes in the existing node pool (node) as unschedulable. Kubernetes stops scheduling new Pods to these nodes once you mark them as unschedulable.
 - **Drain the existing node pool**: This operation evicts the workloads running on the nodes of the existing node pool (node) gracefully.
