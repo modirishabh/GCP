@@ -14,10 +14,30 @@ Docker is an open-source tool for creating and running containers, while Kuberne
 
 ### Key Linux Technologies
 Containers rely on:
-- **Processes** — Each has its own virtual memory and can be created or destroyed quickly.
-- **Namespaces** — Define what a container can see (like process IDs, directories, or IPs).
-- **Control Groups (cgroups)** — Limit what a container can use (CPU, memory, I/O, etc.).
-- **Union File Systems** — Combine files into layers for efficient storage.
+### 1. **Processes** 
+- Every app runs as a Linux *process* with private memory
+- Start/stop in milliseconds ⚡
+- **Analogy**: Each kid gets their own bedroom (no mess sharing)
+
+### 2. **Namespaces** 
+- Hides system parts from container
+- **PID**: Sees only its processes  
+- **Mount**: Sees only its files
+- **Network**: Own IP addresses
+- **Analogy**: Each kid in separate house (can't see neighbors)
+
+### 3. **cgroups (Control Groups)**
+- Hard limits on resources
+- CPU: max 2 cores
+- RAM: max 4GB
+- Disk: 100MB/s
+- **Analogy**: Strict budget - "Only $20 for toys!"
+
+### 4. **Union File Systems**
+- Files stored in stacked *read-only layers*
+- Running container adds 1 thin *writable* top layer
+- **Analogy**: Transparent overhead sheets - write only on top
+
 
 ### Container Image Layers
 A container image is built in layers using a **Dockerfile**, which lists the build instructions:
