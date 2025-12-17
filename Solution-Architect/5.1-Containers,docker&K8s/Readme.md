@@ -34,9 +34,10 @@ Containers rely on:
 - **Analogy**: Strict budget - "Only $20 for toys!"
 
 ### 4. **Union File Systems**
-- Files stored in stacked *read-only layers*
-- Running container adds 1 thin *writable* top layer
-- **Analogy**: Transparent overhead sheets - write only on top
+- Stores files in stacked, read-only layers
+- Each Dockerfile command = 1 layer
+- Running container adds 1 thin, temporary writable layer on top
+- **Analogy:** Like transparent overhead sheets – stack them, write on top sheet only
 
 
 ### Container Image Layers
