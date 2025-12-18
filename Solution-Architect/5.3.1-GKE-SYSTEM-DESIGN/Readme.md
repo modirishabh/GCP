@@ -86,6 +86,17 @@ Probes monitor pod states independently:
 | **Readiness** | "Ready for traffic?" Removes from load balancer if failing (e.g., cache warmup). | HTTP `/healthz` after startup. | Fast local checks, 5-10s period. |
 | **Liveness** | "Still alive?" Restarts if stuck (e.g., deadlock). | TCP port check or metric endpoint. | Avoid false restarts; no side effects. |
 
+
+### initialDelaySeconds
+The `initialDelaySeconds` value represents how long Kubernetes waits **before performing the first probe** after the container starts up.
+
+### periodSeconds
+The `periodSeconds` value indicates **how often the probe will be performed** once it starts.
+
+## Startup Probe
+Pods can also be configured with a `startupProbe`, which determines whether the **application inside the container has successfully started**.  
+If a `startupProbe` is configured, **no other probes (liveness or readiness)** will run until the `startupProbe` returns a `Success` state.
+
 Keep probes simple—no remote calls—to prevent cascade failures.[page:2]
 
 ## Workload Optimization Strategies
