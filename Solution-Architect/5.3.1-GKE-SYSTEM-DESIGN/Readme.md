@@ -84,7 +84,7 @@ Probes monitor pod states independently:
 | Probe Type | Purpose | Example | Best Practices |
 |------------|---------|---------|----------------|
 | **Readiness** | "Ready for traffic?" Removes from load balancer if failing (e.g., cache warmup). | HTTP `/healthz` after startup. | Fast local checks, 5-10s period. |
-| **Liveness** | "Still alive?" Restarts if stuck (e.g., deadlock). | TCP port check or metric endpoint. | Avoid false restarts; no side effects. |
+| **Liveness** | "Still alive?" Restarts if stuck (e.g., deadlock). | TCP port check or metric endpoint. | Avoid false restarts; no side effects. |a livenessProbe could be configured as an HTTP probe that will depend on HTTP response, or a TCP probe that will depend on whether a TCP connection can be made on a specific port.
 
 
 ### initialDelaySeconds
