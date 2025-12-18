@@ -98,7 +98,7 @@ So, the cluster autoscaler helps add and remove nodes in response to pods needin
 
 **Node Auto Provisioning (NAP)** extends the Cluster Autoscaler by automatically creating **new node pools** when needed.
 
-- Without NAP: The Cluster Autoscaler only adds nodes to existing node pools.  
+- Without NAP: The Cluster Autoscaler only adds nodes to existing node pools.Without node auto provisioning, the cluster autoscaler will only be creating new nodes in the node pools you've specified, meaning the new nodes will be the same machine type as the other nodes in that pool.  
 - With NAP: It dynamically creates new node pools sized to meet the workload’s resource requirements.
 
 This feature helps optimize node types for varying workload needs without manual intervention.
