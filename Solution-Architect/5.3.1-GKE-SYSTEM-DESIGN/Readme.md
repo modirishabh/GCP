@@ -108,8 +108,27 @@ Tailor GKE configs to workload type:
 - **Container-Native Load Balancing**: GKE Ingress + Network Endpoint Groups route directly to pods, skipping node proxies.
 - **Integration**: Probes + SIGTERM ensure traffic shifts seamlessly during terminations.
 
-## Key Takeaways
-Combine these for resilient, cost-effective clusters: graceful shutdowns prevent blips, probes enable smart scaling, workload tweaks save $, and networking boosts speed. Test with real traffic patterns.[web:1][page:1]
+# Container-Native Load Balancing
+
+## Overview
+Container-native load balancing allows load balancers to directly target Kubernetes Pods, ensuring even distribution of traffic across them.
+
+## Traditional Load Balancing vs Container-Native
+Without container-native load balancing, load balancer traffic is routed to node instance groups and then forwarded via `iptables` rules to pods. These pods may or may not reside on the same node, leading to potential inefficiencies.
+
+## Benefits
+Container-native load balancing makes pods the central objects for load balancing. This approach provides several key advantages:
+- Reduces the number of network hops.
+- Enables more efficient routing.
+- Decreases overall network utilization.
+- Improves application performance.
+- Ensures even traffic distribution across pods.
+- Supports application-level health checks.
+
+## Prerequisites
+To use container-native load balancing, ensure that the **VPC-native** setting is enabled on your Kubernetes cluster.  
+You can enable this by including the `--enable-ip-alias` flag when creating the cluster.
+
 
 ## Summary
 
