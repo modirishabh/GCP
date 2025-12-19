@@ -1,3 +1,71 @@
+# Kubernetes Fundamentals
+
+Kubernetes uses an object model and declarative management to orchestrate containers reliably. Objects represent cluster state, while the control plane continuously reconciles desired and actual states via a watch loop.  
+
+This document explains these fundamentals, including **Pods** and **Google Kubernetes Engine (GKE)** simplifications.
+
+---
+
+## Core Concepts
+
+Kubernetes objects are persistent entities that define the cluster state.  
+
+- **spec**: Describes the desired configuration (e.g., three nginx Pods).  
+- **status**: Reflects the current state, continuously updated by the control plane.  
+
+**Declarative management** means you declare the goal, and Kubernetes ensures the system converges toward it.  
+Controllers monitor the API server, detect changes, and act to maintain consistency — for example, launching missing Pods to match the declared spec.  
+
+The **watch loop** continuously compares desired and actual states, performing necessary actions to reconcile them.
+
+---
+
+## Pods Explained
+
+**Pods** are the smallest deployable units in Kubernetes.  
+
+Each Pod can host one or more tightly coupled containers that share:  
+- **Networking**: Single IP address, allowing localhost communication.  
+- **Storage volumes**: Shared persistent data volumes.  
+- **Resources**: CPU and memory allocations.  
+
+Pods are **ephemeral** — if one fails, controllers (like **Deployments**) automatically recreate or reschedule new ones, maintaining the desired number of instances (e.g., three `nginx` Pods).
+
+---
+
+## Control Plane Components
+
+The control plane manages the cluster through several key components:
+
+- **kube-apiserver**: The primary API endpoint for all operations and commands (e.g., via `kubectl`). Handles authentication, validation, and communication.  
+- **etcd**: A distributed key-value store maintaining the entire cluster’s configuration and state data.  
+- **kube-scheduler**: Assigns unscheduled Pods to nodes based on resource availability and scheduling constraints.  
+- **kube-controller-manager**: Runs controllers (like the Deployment controller) to reconcile desired vs. actual states.
+
+**Nodes** run:  
+- **kubelet**: The agent responsible for starting and managing Pods using a container runtime (e.g., `containerd`).  
+- **kube-proxy**: Manages networking and load balancing across Pods.  
+- **Pods**: The application workloads themselves.
+
+---
+
+## GKE Differences
+
+**Google Kubernetes Engine (GKE)** simplifies Kubernetes management by handling much of the control plane for you.  
+
+Key distinctions:  
+- The **control plane** is managed and hidden; only the API endpoint is exposed.  
+- **Autopilot Mode** automates node provisioning, scaling, upgrades, and security — ideal for managed operations.  
+- **Standard Mode** gives more flexibility and control, requiring manual node management.
+
+---
+
+
+
+
+
+
+
 # Kubernetes Default Namespaces Reference
 
 Kubernetes automatically creates four default namespaces in every cluster. These provide essential system functions and a default space for user workloads.
