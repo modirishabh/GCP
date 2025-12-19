@@ -270,6 +270,39 @@ Kubernetes automatically creates four default namespaces in every cluster. These
 | **kube-public** | Resources visible/readable by all users cluster-wide | ConfigMaps like cluster-info                       | Public read access; no auth required             |
 | **kube-system** | Kubernetes system components                         | CoreDNS, kube-proxy, metrics-server, controller-manager | System-only; avoid modifying                     |
 
+# Kubernetes `kube-node-lease` Explained
+
+`kube-node-lease` is a dedicated Kubernetes namespace that manages **node heartbeats** through **Lease objects**, enabling efficient health checks for cluster nodes.
+
+## Purpose and Functionality
+
+- **Lease resources** in the `kube-node-lease` namespace represent lightweight heartbeats from each node.  
+- For every Node in the cluster, a corresponding **Lease object** (with the same name) exists and is updated by the **kubelet** to signal node availability.  
+- The **Kubernetes control plane** monitors the `spec.renewTime` timestamp in these Leases to detect if a node is healthy or failing, providing faster failure detection than traditional Node status updates.
+
+## How It Works
+
+1. **Kubelet updates:** Every **10 seconds** (default interval), the kubelet on each node sends an update to its Lease object in `kube-node-lease`, refreshing the `renewTime` field.  
+2. **Internal mechanism:** These are system-internal objects; users rarely interact with them directly since they’re optimized for low overhead compared to full Node status patches.  
+3. **Failure detection:** If `renewTime` expires (typically after **40 seconds lease duration**), the control plane marks the node as unavailable, triggering **eviction or rescheduling**.
+
+## Viewing Node Leases
+
+You can check node leases with the following commands:
+```
+kubectl get lease -n kube-node-lease
+kubectl describe lease <node-name> -n kube-node-lease
+```
+
+Typical output shows `ownerReferences` linking back to the Node and recent `renewTime` information.
+
+## Key Benefits
+
+- Reduces **API server load** from frequent Node status updates.  
+- Enables **rapid node health monitoring** in large clusters.  
+- Part of the **Kubernetes Lease API** in `coordination.k8s.io/v1` used for distributed coordination.
+
+
 
 - **Cordon the existing node pool**: This operation marks the nodes in the existing node pool (node) as unschedulable. Kubernetes stops scheduling new Pods to these nodes once you mark them as unschedulable.
 - **Drain the existing node pool**: This operation evicts the workloads running on the nodes of the existing node pool (node) gracefully.
