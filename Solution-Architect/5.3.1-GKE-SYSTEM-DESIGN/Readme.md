@@ -49,7 +49,8 @@ Retries can sometimes cause unintended repeated actions—like recharging a cred
 
 ## Using Istio / Anthos Service Mesh
 
-**Istio** and **Anthos Service Mesh** are service mesh platforms that let you configure reliability options (retries, timeouts, circuit breakers) centrally—without modifying application code.
+**Istio** and **Anthos Service Mesh**   Anthos service mesh is Google's managed service based onto. The primary purpose of a service mesh is to manage communication between your microservices. With Anthos service mesh,
+you use simple **YAML** configuration files, which are ISTO's custom resources to define routing rules, load balancing,security policies, and exactly how your containers interact with each other and with external services, all without needing to change your application code.are Also service mesh platforms that let you configure reliability options (retries, timeouts, circuit breakers) centrally—without modifying application code.
 
 **What they offer:**
 - Centralized configuration (e.g., “Retry up to N times with exponential backoff and per-try timeout Y”).  
