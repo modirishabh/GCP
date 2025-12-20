@@ -229,3 +229,134 @@ country_eu@group: VIEW on eu_dataset
 - [Cloud SQL Auto Storage][web:21]
 - [BigQuery Partitioning][web:11]
 - Full citations in sections above
+
+# Google Cloud Professional Cloud Architect Exam Questions (113–120)
+
+## Overview
+This README explains core concepts and best answers for **Google Cloud Professional Cloud Architect exam questions 113–120**.  
+Each section covers key principles related to **Kubernetes, networking, logging, ML, and load balancing** that are often tested.
+
+---
+
+## Question 113: Stateful Workloads in GKE
+
+### Core Concepts
+Stateful applications require **stable pod identities and hostnames** (e.g., `app-0`, `app-1`) that persist across restarts.  
+Unlike **stateless Deployments** (where pods are ephemeral), **StatefulSets** provide:
+
+- Ordinal pod names.
+- Stable storage.
+- Ordered scaling (useful for databases or message queues).
+
+### Best Answer
+**A. StatefulSets ensure consistent hostnames even after scaling or relaunches.**
+
+- (B) RBAC controls permissions, not identities.  
+- (C) Environment variables configure apps, not hostnames.  
+- (D) Persistent Volumes stabilize storage only.
+
+---
+
+## Question 114: Cloud CDN Cache Optimization
+
+### Core Concepts
+A **cache hit ratio** improves when CDN serves content from cache instead of the origin.  
+By default, cache keys include the **protocol (HTTP/HTTPS)**, which can duplicate cache entries.  
+Creating **custom cache keys** that omit the protocol consolidates entries and reduces cache misses.
+
+### Best Answer
+**A. Customize cache keys to omit protocol — merges HTTP/HTTPS caches.**
+
+- (B) Shorter TTL lowers hit ratio.  
+- (C) No “HTTPS cache region” header exists.  
+- (D) Storage replication doesn’t fix cache key duplication.
+
+---
+
+## Question 115: Centralized Log Collection
+
+### Core Concepts
+- **Admin activity logs** (GCP service audits) are automatically collected in **Cloud Logging**.  
+- **VM system logs** (`/var/log`) require the **Ops Agent** installed on each instance.  
+Combining both provides centralized logging without custom infrastructure.
+
+### Best Answer
+**B. Auto-collect admin logs; install agent per VM — follows GCP standards.**
+
+- (A) Omits VM agent requirement.  
+- (C) Custom syslog setup is unscalable.  
+- (D) A single agent can’t aggregate all logs.
+
+---
+
+## Question 116: App Engine Canary Releases
+
+### Core Concepts
+**App Engine** supports multiple versions in production simultaneously.  
+You can perform **traffic splitting** (e.g., send 10% to a new version) to safely test updates in production — a **built-in canary release** feature.
+
+### Best Answer
+**B. Deploy new version and split traffic for safe canary deploys.**
+
+- (A) Instance updater applies to Compute Engine, not App Engine.  
+- (C, D) Creating new VPCs or using LBs is unnecessary.
+
+---
+
+## Question 117: VPC Firewall Egress Rules
+
+### Core Concepts
+Firewall rules evaluate by **priority** (lower = higher). The first matching rule applies.  
+The **implied deny egress priority** is `65535`.  
+Allow specific traffic with a **high-priority rule**, then deny all with a **lower priority rule**.
+
+### Best Answer
+**A. Priority 100 allow AD, 1000 deny-all — permits only required ports.**
+
+- (B) Denies traffic too early.  
+- (C, D) Incorrect implied priority usage.
+
+---
+
+## Question 118: ML Model Improvement
+
+### Core Concepts
+**Model accuracy** improves through **feedback loops** — logging predictions and actual outcomes (e.g., clicks, purchases) into **BigQuery** for retraining.  
+Hardware upgrades affect speed, not accuracy.
+
+### Best Answer
+**D. Save recommendations/results in BigQuery for iterative training.**
+
+- (A) Metrics tracking is operations-focused.  
+- (B, C) Hardware performance doesn’t improve model quality.
+
+---
+
+## Question 119: Global URL Path Load Balancing
+
+### Core Concepts
+A **Layer 7 HTTPS Load Balancer** inspects URLs and uses **URL maps** to route traffic by path.  
+It is **global** and supports **end-to-end TLS** between client, load balancer, and backend.  
+Layer 4 proxies cannot analyze URL paths.
+
+### Best Answer
+**B. HTTPS Load Balancer with URL maps — routes by path globally and securely.**
+
+- (A) Lacks HTTPS.  
+- (C, D) SSL proxy is Layer 4 only.
+
+---
+
+## Question 120: MIG Outage Debugging
+
+### Core Concepts
+A **Managed Instance Group (MIG)** uses **health checks** to auto-heal VMs after failures (typically within ~5 seconds).  
+During debugging, temporarily disabling the health check prevents auto-restarts, allowing SSH access for investigation.
+
+### Best Answer
+**Temporarily disable health check — stabilizes VMs for Linux expert SSH access.**
+
+Other options focus on app resilience, not immediate VM access.
+
+---
+
