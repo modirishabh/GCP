@@ -14,6 +14,7 @@ This document summarizes key concepts of Google Cloud’s managed database servi
   - **Cloud SQL Auth Proxy:** For secure external connection.
   - **Authorized external IP:** Least secure, for specific cases.
 - Use **Cloud SQL** when you need a managed relational database but **don’t require horizontal scaling** or global replication.
+- Cloud SQL is configured to automatically increase its storage capacity when it detects that available space is running low. This is a core feature of the managed service.While automatic increases are helpful, you might not want your database to grow indefinitely and generate a huge bill. To control this, Cloud SQL provides an option called the **automatic storage increase limit**. This allows you to set an upper boundary so the database will automatically grow, but only up to the limit you define.
 
 ---
 
