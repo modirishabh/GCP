@@ -68,6 +68,33 @@ Shielded VMs in Google Cloud enhance virtual machine security through features s
 - This design makes Dataflow ideal for new data pipeline projects, while **DataProc** focuses on existing **Hadoop/Spark** workloads.
 
 ---
+## High Availability (HA)
+
+High Availability typically means protecting your application from failures **within a single region**.  
+This is achieved by deploying multiple copies of your application across **different availability zones (AZs)** in that region.
+
+**Goal:**  
+Ensure minimal downtime and continuous service even if one zone experiences an outage.
+
+**Example setup:**
+- Deploy application instances across 2–3 availability zones.
+- Use load balancers to distribute traffic automatically.
+- Store data in replicated databases across zones.
+
+## Disaster Recovery (DR)
+
+Disaster Recovery protects your application from the **failure of an entire region**.  
+It ensures that operations can resume quickly even if a full regional outage occurs.
+
+### Hot DR Pattern
+
+A **Hot DR** setup maintains a **fully active and synchronized** copy of your system in another region.  
+Since the backup system is live, it can **instantly take over traffic** with minimal or no downtime.
+
+**Key points:**
+- Data is continuously replicated between regions.
+- Traffic can be redirected immediately in case of primary region failure.
+- Useful for mission-critical applications requiring near-zero downtime.
 
 ## App Engine Incident Response
 
