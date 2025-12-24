@@ -9,8 +9,8 @@
 - **E**: Enables deps layer caching.[web:2]
 
 ## Question 42: Secure Credential Storage
-**Core Concepts**: Secret Manager stores credentials encrypted with access controls. Audit logs track usage for suspicious activity alerts. KMS manages keys, not secrets.[web:6][web:14]
-
+**Core Concepts**: Secret Manager is Google Cloud's purpose-built vault for sensitive data like database passwords.It provides encryption, access control, and versioning. 
+**Core Concepts** By enabling **cloud audit** logs, you create a detailed record of who accessed what and when. You can then use cloud logging and monitoring to set up alerts for any suspicious activity. 
 **Best Answer**: **B** - Secret Manager + audit logging.[web:14]
 
 ## Question 43: Production Performance Bugs
