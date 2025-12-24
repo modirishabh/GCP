@@ -64,8 +64,11 @@ Google Cloud certification questions testing disaster recovery, IAM hierarchy, s
   - C: Manual creation unscalable
   - D: Asset history = audit only
 
-## Question 68: PII Sanitization for Bigtable
-**Core Concept**: Cloud DLP API detects 15 + info types (PII, cards), de-identifies (redact/tokenize) before storage. Scalable, automated compliance. [web:46]
+## Question 68: PII(personally identifiable information or payment card information) Sanitization for Bigtable
+**Core Concept**: **The cloud data loss prevention API or DLP** is the purpose-built service for this exact problem. 
+First, its powerful detectors can automatically find over 150 different types of sensitive information. 
+Second, after it finds the data, it can deidentify it using various techniques like redaction or tokenization. Using the DLP API
+provides a scalable, reliable, and automated way to ensure sensitive data is sanitized before it's stored for analysiS
 
 **Best Answer**: **C** - Identify data with Cloud DLP API.
 - **Why Wrong**:
