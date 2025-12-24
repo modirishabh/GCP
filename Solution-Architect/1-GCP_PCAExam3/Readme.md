@@ -90,13 +90,18 @@ authenticated user. This centralizes user management and provides a seamless sin
 ## GCE Troubleshooting (Q56)
 **Core Concept**: Diagnose kernel module failures on Compute Engine VMs.
 
-Use Cloud Logging for module errors, serial console for kernel panics/boot issues, Monitoring for metric anomalies at failure time.[web:8][web:16]
+- Use **Cloud logging** collects the system logs from your VMs, 
+- Use The **serial console** allows you to see low-level system and kernel messages, which is especially useful if the VM is having trouble booting or is unresponsive over the network. Any kernel panic or critical error messages would likely appear here.
+- Use **Monitoring** for metric anomalies at failure time.[web:8][web:16]
 - **Best (Choose 3)**: A. Logging, C. Serial console, E. Monitoring timeline.[web:8]
 
 ## Data Security & Insider Threats (Q57)
 **Core Concept**: Prevent exfiltration of sensitive data (e.g., cards in Firestore) beyond IAM.
-
-VPC Service Controls creates perimeters around projects/services, blocking unauthorized egress despite valid creds.[web:9][web:17]
+- **Cloud debugger** allows you to take snapshots of your application state and add temporary log points without stopping or redeploying the code.which is perfect for live troubleshooting. But critically, it adds the phrase in canary mode. This means you would first enable the debugger on a small controlled subset of your production instances. This allows you to test the debugger and its impact safely, fulfilling the minimum business impact requirement.
+- **Event threat detection**. This is a detection tool, not a prevention tool. It analyzes logs and can alert you to suspicious activity after it has happened. While useful for security monitoring
+- **Cloud IDS**. This is an intrusion detection system that monitors network traffic for malicious activity. While useful for network security,
+- **Cloud Armor.** This is a web application firewall and DOS protection service. It's designed to protect your web applications from attacks coming from the internet.
+- **VPC Service Controls**  is designed for this exact scenario. It allows youto create a virtual service perimeter around your sensitive Google Cloud projects and services like the clouddata store instance holding the card details. This perimeter acts like a wall preventing data from being accessed fromoutside the defined network even if the person making the request has valid IM permissions. This is the most effective way to prevent an ex employee from accessing sensitive data from an unauthorized location.
 - **Best Answer**: B. VPC Service Controls (IDS/Armor/Threat Detection don't enforce perimeters).[web:9]
 
 ## Storage & Analytics Architecture (Q58)
