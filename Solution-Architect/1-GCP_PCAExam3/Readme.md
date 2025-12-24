@@ -34,7 +34,7 @@
 **Best Answer**: **D** - Routine scheduled failovers.[web:26]
 
 ## Question 47: Hybrid Cloud Networking
-**Core Concepts**: Dedicated Interconnect offers private high-bandwidth for large transfers. VPN lacks consistent throughput.[web:11][web:19]
+**Core Concepts**: Google Cloud dedicated interconnectprovides a direct private physical connection between your on-remise data center and Google's network. It offers high guaranteed bandwidth which is perfect for replicating large databases  and handling frequent updates. It also operates entirely within a private address space fulfilling both of the core requirements of the question. For this scale of data transfer, it is the most reliable and performant option.
 
 **Best Answer**: **A** - Dedicated Interconnect.[web:11]
 
