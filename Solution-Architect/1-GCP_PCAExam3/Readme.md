@@ -18,8 +18,8 @@
 
 **Best Answer**: **D** - Deploy to small user subset.[web:7]
 
-## Question 44: Microservices Latency Tracing
-**Core Concepts**: Distributed tracing (Cloud Trace) tracks requests via spans, showing bottlenecks in waterfall charts.[web:8][web:16]
+## Question 44:Cloud Trace
+**Core Concepts**:cloud trace captures the full path of each request. It then provides a detailed breakdown often visualized as a waterfall chart showing exactly how much time was spent in each micros service. This allows you to immediately pinpoint the service that is taking the longest and causing the high latency.This is done by adding the trace library to your code
 
 **Best Answer**: **D** - Instrument with Cloud Trace.[web:16]
 
