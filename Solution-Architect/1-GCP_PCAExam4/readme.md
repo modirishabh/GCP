@@ -76,13 +76,10 @@ provides a scalable, reliable, and automated way to ensure sensitive data is san
   - B: Encryption ≠ sanitization
   - D: Regex unreliable globally
 
-## Question 69: Cloud Shell Persistence
-**Core Concept**: `$HOME` (5GB persistent disk) includes `~/bin` in PATH. Store executables there for cross-session availability. [web:21][web:23]
-
+## Question 69: You are using cloud shell and need to install a custom utility for use in a few weeks. Where can you store the file so it is in the default execution path and persists across sessions? 
+**Core Concept**: he ~/bin directory is located inside your persistent home directory. So any file you put there will be saved across sessions and cloud shell is preconfigured to include this specific directory in its default execution path. This means you can run your utility just
+by typing its name and it will be there waiting for you next week.
 **Best Answer**: **A** - `/bin` (~/bin in persistent $HOME).
-- **Why Wrong**:
-  - B: Cloud Storage not in PATH
-  - C/D: Non-persistent locations
 
 ## Question 7 : Secure Remote Desktop VDI
 **Core Concept**: Google Cloud Virtual Desktop Infrastructure (VDI) provides managed, scalable, encrypted desktop streaming for WFH. [web:33]
@@ -106,8 +103,8 @@ provides a scalable, reliable, and automated way to ensure sensitive data is san
 
 **Best Answer**: **B** - Alerting policy based on metric rate in Cloud Monitoring.
 - **Why Wrong**:
-  - A: Process health ≠ VM CPU
-  - C: Uptime checks external only
+  - **A** an **alerting policy based on process health**. This a process health alert checks if a specific application process like a web server is running. 
+  **- C: Uptime checks** external probe to see if your application is reachable from the internet. It can tell you if your service is down, but it can't tell you anything about the internal state of the server, such as its CPU usage
   - D: Custom script = poor practice
 
 ## Key Takeaways
