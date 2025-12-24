@@ -61,7 +61,8 @@
 **Best Answer**: **C** - Secret management system.[web:14]
 
 ## Question 52: Preemptible VM Shutdown
-**Core Concepts**: Preemptible VMs give 30s warning. `shutdown-script` metadata auto-executes graceful shutdown.[web:21][web:22]
+**Core Concepts**:  Google compute engine provides a special **metadata key** called **shutdown script**. 
+- **Here's how it works**. You write a script that performs the graceful shutdown of your application. Then you provide the  content of the script as the value for the shutdown script metadata entry on your virtual machine. When Google Cloud  is about to preempt the instance, it gives a 30-second warning. And during this time, it automatically executes the script you provided. This gives your application a chance to save its state and shut down cleanly. Therefore, the correct way to properly shut down your application 
 
 **Best Answer**: **C** - Shutdown-script metadata.[web:21]
 
@@ -82,9 +83,8 @@ Cloud Debugger enables runtime snapshots/logpoints safely in canary mode (subset
 - **Q59 Best**: D. Debugger API + canary mode.[web:19]
 
 ## Identity & Access Management (Q55)
-**Core Concept**: Integrate external IdPs (Okta/AD) for SSO via federation.
-
-Federation trusts corporate IdP; users auth externally, IdP asserts to Cloud IAM—no new accounts needed.[web:7][web:15]
+**Core Concept**: **identity federation**. Federation establishes a trust relationship between your company's identity provider and Google Cloud. This allows your users to sign in with their familiar corporate credentials and your identity provider tells Google Cloud that they are a valid
+authenticated user. This centralizes user management and provides a seamless single sign on experience.
 - **Best Answer**: C. Federate third-party IdPs (not service accounts/least privilege/migrations).[web:7]
 
 ## GCE Troubleshooting (Q56)
