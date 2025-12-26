@@ -209,6 +209,11 @@ Perimeter enforces access even if the user has IAM read permissions.
 | Proactive | Auto-replaces running VMs |
 | Opportunistic | Applies only to new instances |
 
+- **proactive update mode** is designed to actively and automatically replace your old instances with new ones. While this is a common way to update
+
+- **opportunistic update mode.** This mode is designed for tells the instance group about the new version, but does not actively replace any running
+instances. Instead, it waits for an opportunity to apply the update. This means any new instance created by the autoscaler or any instance recreated by the autohealer will be created using the new updated template.The existing instances are not affected and all new instances will have the update
+
 **✅ Best Answer: D. Rolling Update (Opportunistic Mode)**  
 Autoscaler and autohealer integrate non-disruptive updates.
 
