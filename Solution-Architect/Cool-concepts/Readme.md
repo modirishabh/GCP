@@ -33,6 +33,53 @@ This document provides a quick comparison of key **Google Cloud Platform (GCP)**
 
 ---
 
+# Google Cloud Filestore vs Persistent Disk
+
+Google Cloud **Filestore** provides managed, NFS-based file storage, while **Persistent Disk** offers block storage for individual VMs.  
+
+- **Use Filestore** for shared access across multiple instances.  
+- **Use Persistent Disk** for low-latency, single-VM workloads like databases.
+
+---
+
+## Key Differences
+
+| **Aspect**       | **Filestore** (NFS Shared)                | **Persistent Disk** (VM-Attached)             |
+|------------------|-------------------------------------------|----------------------------------------------|
+| **Storage Type** | File storage (NFS)                        | Block storage                                |
+| **Access**       | Multiple VMs / instances                  | Single VM (multi-attach limited)             |
+| **Performance**  | ~5 ms latency, good throughput            | ~1 ms latency, high IOPS                     |
+| **Scalability**  | Up to 320 TB (high-scale tiers)           | Up to 64 TB per disk                         |
+| **Management**   | Fully managed                             | Self-managed                                 |
+| **Cost (approx.)** | ~$0.20 per GB                           | ~$0.17 per GB                                 |
+
+---
+
+## Use Cases
+
+- **Filestore** is ideal for:
+  - Shared file systems
+  - Media streaming platforms
+  - HPC or ML datasets requiring concurrent access  
+  - Multi-instance workloads
+
+- **Persistent Disk** is best for:
+  - Databases or transactional systems
+  - Virtual machines and containers
+  - High-performance or latency-sensitive applications
+  - Single-instance storage needs
+
+---
+
+## Tip for GCP Kubernetes Workloads
+
+For workloads like **Kubernetes pods** in GCP labs:
+
+- **Persistent Disk (with CSI driver)** works better for **single-pod volumes**.
+- **Filestore** is ideal for **persistent, multi-pod file shares**.
+
+---
+
 # Quick Summary: Read Replica vs Failover Replica
 
 | **Feature** | **Read Replica** | **Failover Replica** |
