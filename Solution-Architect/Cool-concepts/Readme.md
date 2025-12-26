@@ -11,7 +11,7 @@ This document provides a quick comparison of key **Google Cloud Platform (GCP)**
 | **Dataprep** | No‑code wrangler | Clean and shape data before loading into analytics systems. | Analysts / Data Stewards |
 | **Datalab** | Notebook | Explore data, prototype models, and run machine learning experiments. | Data Scientists / Engineers |
 | **Dataproc** | Managed Spark/Hadoop | Execute batch ETL, migrate legacy Hadoop/Spark jobs, or build custom data pipelines. | Data Engineers / Big‑Data Developers |
-
+| **Dataflow**	| Batch + Streaming| 	Pipeline (Beam)|	Medium	ETL pipelines |
 ---
 
 ## 🗄️ Storage / Analytics Tools
