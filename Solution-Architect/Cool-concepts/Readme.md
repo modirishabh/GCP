@@ -33,6 +33,55 @@ This document provides a quick comparison of key **Google Cloud Platform (GCP)**
 
 ---
 
+# Quick Summary: Read Replica vs Failover Replica
+
+| **Feature** | **Read Replica** | **Failover Replica** |
+|--------------|------------------|----------------------|
+| **Purpose** | Scale read queries | Ensure high availability |
+| **Replication** | Asynchronous | Synchronous |
+| **Read Access** | Yes (read-only) | No (standby only) |
+| **Failover** | Manual (optional) | Automatic |
+| **Data Lag** | Possible | Minimal |
+| **Use Case** | Performance | Reliability & uptime |
+
+# App Engine Standard vs Flexible Environment
+
+App Engine offers two environments: **Standard** (sandboxed, managed) and **Flexible** (container-based, customizable). Standard suits simple apps; Flexible handles complex needs. [web:11][web:12]
+
+## Quick Comparison Table
+
+| **Feature**          | **Standard Environment**                  | **Flexible Environment**                  |
+|----------------------|-------------------------------------------|-------------------------------------------|
+| **Runtime**          | Predefined (Python, Java, Node.js, Go, PHP) | Any language via Docker containers        |
+| **Scaling**          | Automatic (to zero instances)             | Manual/automatic (runs on GCE VMs)        |
+| **Cold Start**       | Very fast                                 | Slower (VM spin-up)                       |
+| **Customization**    | Limited (sandbox restrictions)            | Full control (custom runtime, libraries)  |
+| **Pricing**          | Free tier + usage-based (cheaper)         | VM-based (more expensive, no free tier)   |
+| **SSH Access**       | No                                        | Yes (direct VM access)                    |
+| **Built-in Services**| Full App Engine APIs (task queues, memcache) | Limited (runs on Compute Engine)       |
+| **Deployment**       | `gcloud app deploy` (simple)              | Docker + `gcloud app deploy`              |
+| **Use Case**         | Simple web apps, quick prototyping        | Complex apps, custom stacks, legacy code  |
+
+## Key Differences Explained
+
+### **Standard Environment**
+- **Sandbox**: Runs in secure sandbox; no direct OS access.
+- **Zero-downtime scaling**: Scales from 0 instances when idle.
+- **Exam favorite**: "Deploy a simple Python web app with automatic scaling."
+
+### **Flexible Environment**
+- **Containerized**: Uses Docker on GCE VMs (Kubernetes underneath).
+- **More control**: Install any library, access full Linux environment.
+- **Exam gotcha**: "Need custom Node.js version or Ruby? Use Flexible."
+
+## When to Choose What
+- **Standard**: Simple apps, supported languages, cost-sensitive, fast scaling.
+- **Flexible**: Unsupported languages, custom dependencies, need VM-level access.
+- **Migration path**: Standard apps often run in Flexible with minor changes.
+
+**Pro tip**: Start with Standard for speed/simplicity; switch to Flexible only if blocked by runtime limits.
+
+
 # Google Cloud Monitoring — Exam-Focused Summary
 
 Cloud Monitoring is tested primarily on **concepts**, not UI clicks. Focus on **what to monitor**, **how to alert**, and **how it ties into SRE/operations**.
