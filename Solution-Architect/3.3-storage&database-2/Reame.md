@@ -59,6 +59,46 @@ This document summarizes key concepts of Google Cloud’s managed database servi
 - Use **Memorystore** for **caching, gaming, session management, or real-time analytics**.
 
 ---
+# Cloud Firestore Overview
+
+Cloud Firestore is a fully managed, **serverless NoSQL document database** on **Google Cloud Platform (GCP)**.  
+It’s designed for mobile, web, and server applications that require **real-time synchronization** and **offline support**.
+
+---
+
+## 🔑 Key Features
+
+- **Flexible Data Model:** Store data in documents organized into collections.
+- **Nested Objects and Subcollections:** Support for complex hierarchical data structures.
+- **Advanced Querying:** Execute structured queries, including vector search and ACID transactions.
+- **High Availability:** Automatic multi-region replication with up to **99.999% SLA** uptime.
+- **Real-time Updates:** Subscribe to live data changes across multiple clients.
+- **Offline Persistence:** Cache data locally and sync changes when back online.
+- **Seamless Integration:** Works with Firebase Authentication, Cloud Functions, and other GCP services.
+
+---
+
+## 💡 Common Use Cases
+
+- **Mobile/Web Applications:** Chat apps, leaderboards, or shared content updates.
+- **Gaming:** Store user profiles, achievements, and in-game assets.
+- **Content Management:** Manage media libraries, user-generated content, and metadata.
+- **Analytics & Monitoring:** Real-time dashboards or event-driven notifications.
+
+---
+
+## 🧰 SDK & Language Support
+
+Firestore provides SDKs for the following platforms:
+
+- **Client SDKs:** Android, iOS, JavaScript (Web)
+- **Server SDKs:** Node.js, Python, Go, Java, C#
+
+Each SDK supports offline mode, transactional writes, and real-time listeners.
+
+---
+
+
 
 ## Decision Overview
 
