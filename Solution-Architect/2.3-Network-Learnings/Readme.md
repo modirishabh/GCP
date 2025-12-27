@@ -27,6 +27,45 @@
   - Can be reached from Cloud Shell or other clients using Identity‑Aware Proxy (IAP) TCP forwarding plus an SSH-allow firewall rule from the IAP IP range. [web:6][web:20]  
   - Can reach other internal resources in the VPC via private IP, subject to firewall and routes. [web:2][web:5]  
 
+# Identity-Aware Proxy (IAP) Overview
+
+**Identity-Aware Proxy (IAP)** is Google Cloud's zero-trust access solution that secures applications and resources by verifying **user identity and context** before granting access.  
+It eliminates VPNs and provides fine-grained access control without changing application code.[web:41][web:42]
+
+---
+
+## 🔑 Key Features
+
+- **Zero Trust Security**: Every request is authenticated and authorized based on identity, device, and context
+- **No VPN Required**: Secure remote access from anywhere without network perimeter
+- **Context-Aware Access**: Considers user identity, device trust, location, and time
+- **Identity Integration**: Google Workspace, Cloud Identity, OIDC providers, MFA support
+- **Granular Policies**: IAM-based roles and policies for precise access control
+- **SSO Support**: Single sign-on across multiple applications
+- **Audit Logging**: Complete visibility into all access attempts and decisions
+
+---
+
+## 💡 Common Use Cases
+
+- **Internal Web Applications**  
+  Secure employee-only dashboards, admin panels, and internal tools
+
+- **API Protection**  
+  Secure REST/GraphQL APIs without IP whitelisting
+
+- **Cloud Run & App Engine**  
+  Protect serverless applications with identity-based access
+
+- **GKE Workloads**  
+  Secure Kubernetes ingress traffic with user authentication
+
+- **SSH Access**  
+  Secure VM access via IAP TCP forwarding (VPN replacement)
+
+- **Third-Party Apps**  
+  On-premises or external apps behind IAP proxy
+
 ## Private Google Access (PGA)
 
 - Private Google Access lets VMs without external IPs reach Google APIs and services using the VPC’s default route and Google’s public API IPs. [web:6][web:12]  
