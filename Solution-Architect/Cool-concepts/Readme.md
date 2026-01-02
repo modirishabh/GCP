@@ -40,6 +40,27 @@ Google Cloud **Filestore** provides managed, NFS-based file storage, while **Per
 - **Use Filestore** for shared access across multiple instances.  
 - **Use Persistent Disk** for low-latency, single-VM workloads like databases.
 
+## Disaster Recovery (DR)
+
+Disaster Recovery protects your application from the **failure of an entire region**.  
+It ensures that operations can resume quickly even if a full regional outage occurs.
+
+### Hot DR Pattern
+
+A **Hot DR** setup maintains a **fully active and synchronized** copy of your system in another region.  
+Since the backup system is live, it can **instantly take over traffic** with minimal or no downtime.
+
+**Key points:**
+- Data is continuously replicated between regions.
+- Traffic can be redirected immediately in case of primary region failure.
+- Useful for mission-critical applications requiring near-zero downtime.
+## Cloud Armor Purpose
+
+**Cloud Armor** protects applications from **DDoS attacks** and serves as a **Web Application Firewall (WAF)**.
+
+- Can defend against threats like **SQL injection** and **Cross-Site Scripting (XSS)**.
+- Operates at the **network edge** to block malicious traffic before it reaches backend services.
+
 ---
 
 ## Key Differences
@@ -202,6 +223,9 @@ Cloud Monitoring is tested primarily on **concepts**, not UI clicks. Focus on **
   - External endpoints
 
 ---
+
+## Cloud Trace
+Core Concepts:cloud trace captures the full path of each request. It then provides a detailed breakdown often visualized as a waterfall chart showing exactly how much time was spent in each micros service. This allows you to immediately pinpoint the service that is taking the longest and causing the high latency.This is done by adding the trace library to your code
 
 ## Exam-Style Gotchas
 
