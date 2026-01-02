@@ -39,6 +39,14 @@
 - Typical states: provisioning → staging → running → stopping/terminated; some changes (like machine type) require the VM to be stopped.[web:29][web:1]  
 - Availability policies control maintenance behavior (live migrate vs terminate) and automatic restart after failure.[web:29][web:15]  
 
+## Shielded VMs
+
+Shielded VMs in Google Cloud enhance virtual machine security through features such as **Secure Boot**, **vTPM**, and **Integrity Monitoring**.
+
+- **Integrity Monitoring**  It works by taking a snapshot of the systems boot sequence called a baseline when it's in a known good trusted state. Every time the VM boots, it compares the new boot sequence to this baseline. If they don't match,it raises an alert, signaling a potential integrity violation.  
+- **Secure boot** is a feature of the Unified Extensible Firmware Interface (UEFI) that ensures only trusted software (signed by authorized publishers) can load during the boot process.
+- **vTPM (Virtual Trusted Platform Module**) A primary role of the vTPM is to perform "measured boot," where it records cryptographic hashes (measurements) of the entire boot chain (UEFI, OS, drivers). These measurements can be used for remote attestation, allowing the cloud provider or a monitoring system to cryptographically verify the VM's health and ensure it has not been compromised.
+
 ## OS patch management
 
 - OS patch management helps apply and schedule OS and software patches across many VMs.[web:7][web:13]  
