@@ -227,6 +227,13 @@ Cloud Monitoring is tested primarily on **concepts**, not UI clicks. Focus on **
 ## Cloud Trace
 Core Concepts:cloud trace captures the full path of each request. It then provides a detailed breakdown often visualized as a waterfall chart showing exactly how much time was spent in each micros service. This allows you to immediately pinpoint the service that is taking the longest and causing the high latency.This is done by adding the trace library to your code
 
+
+## Data Security & Insider Threats (Q57)
+**Core Concept**: Prevent exfiltration of sensitive data (e.g., cards in Firestore) beyond IAM.
+- **Cloud debugger** allows you to take snapshots of your application state and add temporary log points without stopping or redeploying the code.which is perfect for live troubleshooting. But critically, it adds the phrase in canary mode. This means you would first enable the debugger on a small controlled subset of your production instances. This allows you to test the debugger and its impact safely, fulfilling the minimum business impact requirement.
+- **Event threat detection**. This is a detection tool, not a prevention tool. It analyzes logs and can alert you to suspicious activity after it has happened. While useful for security monitoring
+- **Cloud IDS**. This is an intrusion detection system that monitors network traffic for malicious activity. While useful for network security,
+
 ## Exam-Style Gotchas
 
 - Centralize monitoring in a **dedicated monitoring project / metrics scope** for multi-project setups.
