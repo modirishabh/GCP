@@ -28,10 +28,10 @@
 
 ## Machine families (high level)
 
-- **General-purpose**: Balanced price and performance for most workloads.[web:1][web:11]  
-- **Compute-optimized**: Highest performance per core for CPU-heavy workloads (HPC, gaming, media processing).[web:1][web:35]  
-- **Memory-optimized**: Very large RAM for in-memory databases and analytics.[web:1][web:11]  
-- **Accelerator-optimized**: VMs with GPUs for ML and high-performance computing.[web:1][web:12]  
+- **General-purpose**: Balanced price and performance for most workloads.E2 and N2/N2D series dominate as the most common choices for web apps, databases, and containers due to optimal cost-performance
+- **Compute-optimized**: Highest performance per core for CPU-heavy workloads (HPC, gaming, media processing).C2 and C2D are the go-to for CPU-heavy tasks like game servers, HPC, and media processing 
+- **Memory-optimized**: Very large RAM for in-memory databases and analytics.M2 and M1/M3/M4 series lead for in-memory databases and analytics
+- **Accelerator-optimized**: VMs with GPUs for ML and high-performance computing.A2/A3 and G2/G4 are standard for ML training, inference, and gaming/graphics
 
 ## VM access and lifecycle
 
