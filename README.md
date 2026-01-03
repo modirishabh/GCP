@@ -1,5 +1,5 @@
 # GCP
-#1 Welcome Back to Understanding Google Cloud
+##1 Welcome Back to Understanding Google Cloud
 
 Welcome back. In this segment, we're going to deepen our understanding of the Google Cloud Platform (GCP) and explore how it came into existence. We begin with an introduction to GCP, followed by a tutorial on navigating the console. For those interested in a more foundational understanding, our "Introduction to Google Cloud" course is recommended.
 
